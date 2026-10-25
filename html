@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Khảo sát trải nghiệm mua sắm Shopee</title>
+</head>
+<body>
+  <h2>Khảo sát trải nghiệm mua sắm trên Shopee</h2>
+  <form id="surveyForm">
+    <label>1. Giao diện ứng dụng Shopee trực quan, dễ sử dụng? (1-5):</label><br/>
+    <input type="number" name="uiScore" min="1" max="5" required /><br/><br/>
+    <label>2. Quá trình thanh toán nhanh chóng, tiện lợi? (1-5):</label><br/>
+    <input type="number" name="paymentScore" min="1" max="5" required /><br/><br/>
+    <label>3. Tốc độ giao hàng đáp ứng kỳ vọng? (1-5):</label><br/>
+    <input type="number" name="deliveryScore" min="1" max="5" required /><br/><br/>
+    <label>4. Dịch vụ hỗ trợ khách hàng hiệu quả? (1-5):</label><br/>
+    <input type="number" name="supportScore" min="1" max="5" required /><br/><br/>
+    <label>5. Bạn hài lòng tổng thể về trải nghiệm mua sắm trên Shopee? (1-5):</label><br/>
+    <input type="number" name="overallScore" min="1" max="5" required /><br/><br/>
+    <button type="submit">Gửi khảo sát</button>
+  </form>
+  <h3>Kết quả khảo sát</h3>
+  <div id="result"></div>
+  <script src="script.js"></script>
+</body>
+</htmldocument.getElementById('surveyForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  // Lấy điểm từ form
+  const uiScore = parseInt(this.uiScore.value);
+  const paymentScore = parseInt(this.paymentScore.value);
+  const deliveryScore = parseInt(this.deliveryScore.value);
+  const supportScore = parseInt(this.supportScore.value);
+  const overallScore = parseInt(this.overallScore.value);
+  // Tính điểm trung bình trải nghiệm
+  const avgExperience = ((uiScore + paymentScore + deliveryScore + supportScore) / 4).toFixed(2);
+  // Hiển thị kết quả
+  const resultDiv = document.getElementById('result');
+  resultDiv.innerHTML = `
+    <p>Điểm trung bình trải nghiệm số: <b>${avgExperience}</b></p>
+    <p>Điểm hài lòng tổng thể: <b>${overallScore}</b></p>
+  `;
+  // Bạn có thể lưu kết quả vào backend hoặc localStorage nếu muốn
+});
